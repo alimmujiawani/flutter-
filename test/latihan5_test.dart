@@ -7,13 +7,17 @@ void main() {
   ) async {
     await tester.pumpWidget(const MyApp());
 
-    expect(find.text('Belajar Container'), findsOneWidget);
-    expect(find.text('Candra Hediansyah'), findsOneWidget);
+    expect(find.text('Mates Power Riot'), findsOneWidget);
+    expect(find.text('Riot Selecta'), findsOneWidget);
     expect(find.text('Belajar Flutter!'), findsOneWidget);
     expect(
       find.text('Bangun aplikasi mulai dari fundamental.'),
       findsOneWidget,
     );
+    expect(find.text('Skill Keahlian'), findsOneWidget);
+    expect(find.bySemanticsLabel('Laravel'), findsOneWidget);
+    expect(find.bySemanticsLabel('Nuxt'), findsOneWidget);
+    expect(find.bySemanticsLabel('Flutter'), findsOneWidget);
 
     await tester.tap(find.text('Mulai Belajar'));
     await tester.pump();

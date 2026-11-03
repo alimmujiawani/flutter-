@@ -8,6 +8,11 @@ import 'package:flutter_ikbal/container_widget/row_column.dart/latihan.dart';
 import 'package:flutter_ikbal/container_widget/row_column.dart/latihan2.dart';
 import 'package:flutter_ikbal/container_widget/container_widget.dart';
 import 'package:flutter_ikbal/container_widget/row_column.dart/latihan5.dart';
+import 'package:flutter_ikbal/listview_widget/latihan3.dart';
+import 'package:flutter_ikbal/listview_widget/list_basic.dart';
+import 'package:flutter_ikbal/listview_widget/list_builder.dart';
+import 'package:flutter_ikbal/listview_widget/list_builder2.dart';
+import 'package:flutter_ikbal/listview_widget/list_separated.dart';
 
 void main() {
   runApp(MyApp());
@@ -29,9 +34,9 @@ class MyApp extends StatelessWidget {
                 height: 48,
                 padding: const EdgeInsets.all(2),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFFFE8DC),
+                  color: const Color.fromARGB(255, 5, 5, 5),
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: const Color(0xFFF2C9B2)),
+                  border: Border.all(color: const Color.fromARGB(255, 0, 0, 0)),
                 ),
                 child: Image.asset(
                   'assets/images/fist_hands.png',
@@ -45,11 +50,11 @@ class MyApp extends StatelessWidget {
               ),
             ],
           ),
-          backgroundColor: const Color.fromARGB(255, 236, 234, 234),
+          backgroundColor: const Color.fromARGB(255, 0, 0, 0),
           foregroundColor: const Color.fromARGB(255, 255, 0, 0),
           elevation: 0,
         ),
-        body: Latihan5(),
+        body: Latihan3(),
       ),
     );
   }
@@ -62,7 +67,7 @@ class HellloWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Text(
-        'Hello, Lintang!',
+        'Hello, bastard!',
         style: TextStyle(
           fontSize: 24,
           fontWeight: FontWeight.bold,
