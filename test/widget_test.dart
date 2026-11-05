@@ -1,40 +1,70 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_ikbal/main.dart';
+import 'package:flutter_ikbal/girdview/guil_builder.dart';
 
 void main() {
-  testWidgets('shows the collections and saves a link', (
-    WidgetTester tester,
-  ) async {
-    await tester.pumpWidget(const MyApp());
-
-    expect(find.text('Save now.\nFind anytime.'), findsOneWidget);
-    expect(find.text('My Collections'), findsOneWidget);
-    expect(find.text('Unsorted'), findsOneWidget);
-    expect(find.byType(TextField), findsOneWidget);
-
-    await tester.enterText(find.byType(TextField), 'https://example.com');
-    await tester.tap(find.byTooltip('Save link'));
-    await tester.pump();
-
-    expect(find.text('2 links'), findsOneWidget);
-    expect(find.text('Link disimpan ke Unsorted'), findsOneWidget);
+  test('the automotive catalog contains exactly eight products', () {
+    expect(automotiveProducts, hasLength(8));
+    expect(
+      automotiveProducts.map((product) => product.name),
+      containsAll([
+        'Toyota GR Supra',
+        'Honda Civic RS',
+        'Yamaha NMAX',
+        'Kawasaki Ninja',
+        'Ban Michelin',
+        'Oli Shell Helix',
+        'Aki GS Astra',
+        'Helm KYT',
+      ]),
+    );
+    expect(
+      automotiveProducts.every((product) => product.description.isNotEmpty),
+      isTrue,
+    );
   });
 
-  testWidgets('rejects links without a valid web address', (
+  testWidgets('shows the automotive catalog', (WidgetTester tester) async {
+    await tester.pumpWidget(const MaterialApp(home: AutomotiveProduct()));
+
+    expect(find.text('Katalog Otomotif'), findsOneWidget);
+    expect(find.text('8 ITEM'), findsOneWidget);
+    expect(find.byType(GridView), findsOneWidget);
+
+    await tester.tap(find.text('Toyota GR Supra'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Mobil sport'), findsOneWidget);
+    expect(
+      find.text('Coupe sport dengan performa tinggi dan desain agresif.'),
+      findsNWidgets(2),
+    );
+    expect(find.text('Rp 2,1 M'), findsNWidgets(2));
+
+    await tester.tap(find.text('Tutup'));
+    await tester.pumpAndSettle();
+  });
+
+  testWidgets('replaces a product image after selecting a gallery image', (
     WidgetTester tester,
   ) async {
-    await tester.pumpWidget(const MyApp());
-
-    await tester.enterText(find.byType(TextField), 'https://');
-    await tester.tap(find.byTooltip('Save link'));
-    await tester.pump();
-
-    expect(
-      find.text('Masukkan link yang valid, misalnya https://contoh.com'),
-      findsOneWidget,
+    final imageBytes = base64Decode(
+      'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADUlEQVR4nGP4z8AAAAMBAQDJ/pLvAAAAAElFTkSuQmCC',
     );
-    expect(find.text('1 links'), findsOneWidget);
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(body: GridBuilder(pickImage: () async => imageBytes)),
+      ),
+    );
+
+    await tester.tap(find.byTooltip('Ubah gambar Toyota GR Supra'));
+    await tester.pumpAndSettle();
+
+    expect(find.byType(Image), findsOneWidget);
+    expect(find.text('Gambar Toyota GR Supra berhasil diubah'), findsOneWidget);
   });
 }
