@@ -32,10 +32,7 @@ class ContohNav extends StatelessWidget {
               const SizedBox(height: 8),
               const Text(
                 'Belajar Flutter dengan navigasi yang lebih rapi.',
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Color(0xFF475569),
-                ),
+                style: TextStyle(fontSize: 15, color: Color(0xFF475569)),
               ),
               const SizedBox(height: 20),
               Expanded(
@@ -51,10 +48,22 @@ class ContohNav extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return AboutPage(nama: 'sidik', kelas: 'xii', umur: 17);
+                              return AboutPage(
+                                nama: 'sidik',
+                                kelas: 'xii',
+                                umur: 17,
+                              );
                             },
                           ),
                         );
+                      },
+                    ),
+                    _menuButton(
+                      icon: Icons.music_note_rounded,
+                      label: 'Buka aplikasi musik',
+                      color: const Color(0xFF65A30D),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/music');
                       },
                     ),
                     _menuButton(
@@ -112,10 +121,7 @@ class ContohNav extends StatelessWidget {
         icon: Icon(icon, size: 22),
         label: Text(
           label,
-          style: const TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w600,
-          ),
+          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
         ),
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.white,
