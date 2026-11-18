@@ -56,181 +56,88 @@ class _TechnologyLogos extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          '',
-          style: TextStyle(
-            color: Color.fromARGB(255, 8, 8, 8),
-            fontSize: 20,
-            fontWeight: FontWeight.w500,
+        const Padding(
+          padding: EdgeInsets.only(left: 30),
+          child: Text(
+            'Skill Keahlian:',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF1F02F4),
+            ),
           ),
         ),
-        const SizedBox(height: 18),
-        Row(
-          children: [
-            SizedBox(width: 30),
-            Text(
-              "Skill Keahlian:",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: const Color.fromARGB(255, 31, 2, 244),
-              ),
+        const SizedBox(height: 10),
+        Wrap(
+          alignment: WrapAlignment.center,
+          spacing: 12,
+          runSpacing: 12,
+          children: const [
+            _SkillCard(
+              label: 'Laravel',
+              assetPath: 'assets/images/laravel.svg',
             ),
-          ],
-        ),
-
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Container(
-              height: 120,
-              width: 120,
-              margin: EdgeInsets.only(right: 20, left: 20, top: 10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(width: 0.5),
-                image: DecorationImage(
-                  image: NetworkImage(
-                    'https://cdn.brandfetch.io/domain/laravel.com/fallback/lettermark/theme/dark/h/400/w/400/icon?c=1bfwsmEH20zzEfSNTed',
-                  ),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              child: Stack(
-                children: [
-                  Positioned(
-                    right: 6,
-                    top: 6,
-                    child: Container(
-                      width: 16,
-                      height: 16,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(100),
-                      ),
-                    ),
-                  ),
-
-                  Positioned(
-                    right: 3,
-                    top: 2,
-                    child: Icon(Icons.check_circle, color: Colors.blue),
-                  ),
-
-                  Positioned(
-                    right: 5,
-                    bottom: 3,
-                    child: Text(
-                      "Laravel",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              height: 120,
-              width: 120,
-              margin: EdgeInsets.only(right: 20, left: 20, top: 10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(width: 0.5),
-                image: DecorationImage(
-                  image: NetworkImage(
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3KRF2KUVqHuSh4jJccD2jSJ7hAgRDt0AN9_kAQeDzZA&s=10',
-                  ),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              child: Stack(
-                children: [
-                  Positioned(
-                    right: 6,
-                    top: 6,
-                    child: Container(
-                      width: 16,
-                      height: 16,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(100),
-                      ),
-                    ),
-                  ),
-
-                  Positioned(
-                    right: 3,
-                    top: 2,
-                    child: Icon(Icons.check_circle, color: Colors.blue),
-                  ),
-
-                  Positioned(
-                    right: 5,
-                    bottom: 3,
-                    child: Text(
-                      "Tailwind",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              height: 120,
-              width: 120,
-              margin: EdgeInsets.only(right: 20, left: 20, top: 10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(width: 0.5),
-                image: DecorationImage(
-                  image: NetworkImage(
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3B7lR_13JZiYs545iZdVin_XGI2A2J72pI4T2azHfP7OI9CYOxs9K2cbf&s=10',
-                  ),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              child: Stack(
-                children: [
-                  Positioned(
-                    right: 6,
-                    top: 6,
-                    child: Container(
-                      width: 16,
-                      height: 16,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(100),
-                      ),
-                    ),
-                  ),
-
-                  Positioned(
-                    right: 3,
-                    top: 2,
-                    child: Icon(Icons.check_circle, color: Colors.blue),
-                  ),
-
-                  Positioned(
-                    right: 5,
-                    bottom: 3,
-                    child: Text(
-                      "Flutter",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+            _SkillCard(label: 'Tailwind', icon: Icons.wind_power_rounded),
+            _SkillCard(
+              label: 'Flutter',
+              assetPath: 'assets/images/flutter.svg',
             ),
           ],
         ),
       ],
+    );
+  }
+}
+
+class _SkillCard extends StatelessWidget {
+  const _SkillCard({required this.label, this.assetPath, this.icon});
+
+  final String label;
+  final String? assetPath;
+  final IconData? icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      label: label,
+      child: Container(
+        width: 110,
+        height: 120,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(width: 0.5),
+        ),
+        child: Stack(
+          children: [
+            Center(
+              child: assetPath != null
+                  ? Padding(
+                      padding: const EdgeInsets.all(18),
+                      child: SvgPicture.asset(assetPath!),
+                    )
+                  : Icon(icon, size: 52, color: const Color(0xFF38BDF8)),
+            ),
+            const Positioned(
+              right: 4,
+              top: 4,
+              child: Icon(Icons.check_circle, color: Colors.blue, size: 20),
+            ),
+            Positioned(
+              left: 6,
+              right: 6,
+              bottom: 5,
+              child: Text(
+                label,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Colors.black87,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
